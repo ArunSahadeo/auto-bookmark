@@ -1,0 +1,59 @@
+/* Global vars */
+
+$primary-green: #00b4b7;
+
+html, body
+{
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+*
+{
+    box-sizing: border-box;
+}
+
+main
+{
+    height: 100%;
+    position: relative;
+}
+
+%pos-center
+{
+    left: 51%;
+    transform: translateX(-51%);
+}
+
+.form-container
+{
+    max-width: 800px;
+    background: $primary-green;
+    position: relative;
+    @extend %pos-center;
+    top: 45%;
+    form
+    {
+        text-align: center;
+        padding: 15% 0;
+        .input-wrapper
+        {
+            display: block;
+            margin: 0 auto;
+        }
+        .buttons-toggle
+        {
+            margin-top: 20px;
+        }
+        button:not(.cta-toggle)
+        {
+            position: absolute;
+            @extend %pos-center;
+            bottom: 0;
+            margin-bottom: 5%;
+        }
+    }
+}
