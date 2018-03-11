@@ -3,15 +3,48 @@ window.onload = initOptions;
 function initOptions()
 {
 
-    var textInputs = document.querySelectorAll(".input-generic"),
-        textInput = textInputs[textInputs.length - 1].parentElement,
-        form = textInput.parentElement;
+    var form = document.querySelector("form.form-generic"),
+        textInputs,
+        textInput;
+
+    function addPopulatedInputs()
+    {
+        if (form.length === 0) return;
+
+        var firstInputContainer = document.createElement("div"),
+            firstInput = document.createElement("input");
+
+        firstInputContainer.classList.add("input-wrapper");
+
+        firstInput.setAttribute("type", "text");
+        firstInput.setAttribute("placeholder", "Enter desired search term");
+        firstInput.classList.add("input-generic");
+
+        chrome.storage.sync.get({
+            searchTerms: []
+        }, function(data) {
+            var searchTerms = data.searchTerms;
+            for ( var len = searchTerms.length - 1; len >= 0; --len )
+            {
+                firstInput.value = searchTerms[len];
+                firstInputContainer.appendChild(firstInput);
+                form.insertBefore(firstInputContainer, form.firstChild);
+            }
+            textInputs = document.querySelectorAll(".input-generic"),
+            textInput = textInputs[textInputs.length - 1].parentElement;
+        });
+
+
+    }
+
+    addPopulatedInputs();
 
     if (form.length === 0)
     {
         throw "Form is missing!";
         return;
     }
+
 
     var customValidation = function(formElem)
     {
