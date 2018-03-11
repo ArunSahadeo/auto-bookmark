@@ -94,6 +94,7 @@ function initOptions()
             searchTerms: optionsArray
         }, function() {
             console.log("Added to list!");
+            window.location.reload();
         });
 
     }
