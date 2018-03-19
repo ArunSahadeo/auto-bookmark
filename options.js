@@ -70,6 +70,9 @@ function initOptions()
             var inputContainerNew = document.createElement("div"),
                 inputNew = document.createElement("input");
 
+            textInputs = document.querySelectorAll(".input-generic"),
+            textInput = textInputs[textInputs.length - 1].parentElement;
+
             inputContainerNew.classList.add("input-wrapper");
 
             inputNew.setAttribute("type", "text");
@@ -81,8 +84,9 @@ function initOptions()
 
         else if (action === "decrement")
         {
-            var inputCount = document.querySelectorAll(".input-generic");
-            if (inputCount.length === 1) return;
+            textInputs = document.querySelectorAll(".input-generic");
+            if (textInputs.length === 1) return;
+            textInput = textInputs[textInputs.length - 1].parentElement;
             form.removeChild(textInput);
         }
 
